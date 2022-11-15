@@ -1,55 +1,27 @@
-package com.pizzaservice.model;
+package com.pizzaservice.restresource;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.pizzaservice.model.DeliveryType;
+import com.pizzaservice.model.OrderState;
+
 import java.util.Set;
 
-@Entity
-@Table(name = "PizzaOrder")
-public class PizzaOrder
+public class PizzaOrderResource
 {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
-
-  @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-  private Set<ReadyMadePizzaOrder> readyMadePizzaOrders;
-
-  @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
-  private Set<CustomPizzaOrder> customPizzaOrders;
-
-  @Column(name = "order_state")
+  private Set<ReadyMadePizzaOrderResource> readyMadePizzaOrders;
+  private Set<CustomPizzaOrderResource> customPizzaOrders;
   private OrderState orderState;
-
-  @Column(name = "delivery_type")
   private DeliveryType deliveryType;
-
-  @Column(name = "customer_name")
   private String customerName;
-
-  @Column(name = "delivery_address")
   private String deliveryAddress;
-
-  @Column(name = "contact_number")
   private String contactNumber;
 
-  public PizzaOrder()
-  {
-  }
-
-  public PizzaOrder(Set<ReadyMadePizzaOrder> readyMadePizzaOrders,
-                    Set<CustomPizzaOrder> customPizzaOrders,
-                    OrderState orderState,
-                    DeliveryType deliveryType,
-                    String customerName,
-                    String deliveryAddress,
-                    String contactNumber)
+  public PizzaOrderResource(Set<ReadyMadePizzaOrderResource> readyMadePizzaOrders,
+                            Set<CustomPizzaOrderResource> customPizzaOrders,
+                            OrderState orderState,
+                            DeliveryType deliveryType,
+                            String customerName,
+                            String deliveryAddress,
+                            String contactNumber)
   {
     this.readyMadePizzaOrders = readyMadePizzaOrders;
     this.customPizzaOrders = customPizzaOrders;
@@ -60,22 +32,22 @@ public class PizzaOrder
     this.contactNumber = contactNumber;
   }
 
-  public Set<ReadyMadePizzaOrder> getReadyMadePizzaOrders()
+  public Set<ReadyMadePizzaOrderResource> getReadyMadePizzaOrders()
   {
     return readyMadePizzaOrders;
   }
 
-  public void setReadyMadePizzaOrders(Set<ReadyMadePizzaOrder> readyMadePizzaOrders)
+  public void setReadyMadePizzaOrders(Set<ReadyMadePizzaOrderResource> readyMadePizzaOrders)
   {
     this.readyMadePizzaOrders = readyMadePizzaOrders;
   }
 
-  public Set<CustomPizzaOrder> getCustomPizzaOrders()
+  public Set<CustomPizzaOrderResource> getCustomPizzaOrders()
   {
     return customPizzaOrders;
   }
 
-  public void setCustomPizzaOrders(Set<CustomPizzaOrder> customPizzaOrders)
+  public void setCustomPizzaOrders(Set<CustomPizzaOrderResource> customPizzaOrders)
   {
     this.customPizzaOrders = customPizzaOrders;
   }

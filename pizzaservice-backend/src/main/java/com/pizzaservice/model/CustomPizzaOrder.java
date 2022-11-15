@@ -1,5 +1,6 @@
 package com.pizzaservice.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +19,6 @@ public class CustomPizzaOrder
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @OneToOne
-  @JoinColumn(name = "pizza_id")
-  private CustomPizza pizza;
-
   @Column(name = "size")
   private PizzaSize size;
 
@@ -32,7 +29,7 @@ public class CustomPizzaOrder
   @JoinColumn(name = "pizza_order_id")
   private PizzaOrder pizzaOrder;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "custom_pizza_id")
   private CustomPizza customPizza;
 
@@ -40,27 +37,12 @@ public class CustomPizzaOrder
   {
   }
 
-  public CustomPizzaOrder(CustomPizza pizza,
-                          PizzaSize size,
-                          int quantity,
-                          PizzaOrder pizzaOrder,
-                          CustomPizza customPizza)
+  public CustomPizzaOrder(PizzaSize size, int quantity, PizzaOrder pizzaOrder, CustomPizza customPizza)
   {
-    this.pizza = pizza;
     this.size = size;
     this.quantity = quantity;
     this.pizzaOrder = pizzaOrder;
     this.customPizza = customPizza;
-  }
-
-  public CustomPizza getPizza()
-  {
-    return pizza;
-  }
-
-  public void setPizza(CustomPizza pizza)
-  {
-    this.pizza = pizza;
   }
 
   public PizzaSize getSize()
@@ -83,16 +65,6 @@ public class CustomPizzaOrder
     this.quantity = quantity;
   }
 
-  public void setPizzaOrder(PizzaOrder pizzaOrder)
-  {
-    this.pizzaOrder = pizzaOrder;
-  }
-
-  public PizzaOrder getPizzaOrder()
-  {
-    return pizzaOrder;
-  }
-
   public CustomPizza getCustomPizza()
   {
     return customPizza;
@@ -101,5 +73,15 @@ public class CustomPizzaOrder
   public void setCustomPizza(CustomPizza customPizza)
   {
     this.customPizza = customPizza;
+  }
+
+  public PizzaOrder getPizzaOrder()
+  {
+    return pizzaOrder;
+  }
+
+  public void setPizzaOrder(PizzaOrder pizzaOrder)
+  {
+    this.pizzaOrder = pizzaOrder;
   }
 }

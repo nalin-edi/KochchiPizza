@@ -1,12 +1,16 @@
 package com.pizzaservice.controller;
 
 import com.pizzaservice.exception.ResourceNotFoundException;
+import com.pizzaservice.mapper.PizzaOrderResourceMapper;
+import com.pizzaservice.model.OrderState;
 import com.pizzaservice.model.PizzaOrder;
 import com.pizzaservice.repository.PizzaOrderRepository;
+import com.pizzaservice.restresource.PizzaOrderResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +28,8 @@ public class PizzaOrderController
 {
   @Autowired
   private PizzaOrderRepository pizzaOrderRepository;
+  @Autowired
+  private PizzaOrderResourceMapper pizzaOrderResourceMapper;
 
   @GetMapping("/pizza-order")
   public List<PizzaOrder> getAllPizzaOrders()
@@ -32,10 +38,11 @@ public class PizzaOrderController
   }
 
   @PostMapping("/pizza-order/create")
-  public PizzaOrder createPizzaOrder(@RequestBody PizzaOrder pizzaOrder)
+  public PizzaOrder createPizzaOrder(@RequestBody PizzaOrderResource pizzaOrderResource)
   {
-    return pizzaOrderRepository.save(pizzaOrder);
+    return pizzaOrderRepository.save(pizzaOrderResourceMapper.mapRestToModel(pizzaOrderResource));
   }
+
 
   @GetMapping("/pizza-order/{id}")
   public ResponseEntity<PizzaOrder> getPizzaOrderById(@PathVariable Long id)
@@ -46,10 +53,12 @@ public class PizzaOrderController
   }
 
   @PutMapping("/pizza-order/{id}")
-  public ResponseEntity<PizzaOrder> updatePizzaOrder(@PathVariable Long id, @RequestBody PizzaOrder pizzaOrderData)
+  public ResponseEntity<PizzaOrder> updatePizzaOrder(@PathVariable Long id, @RequestBody PizzaOrderResource pizzaOrderResource)
   {
     PizzaOrder
       pizzaOrder = pizzaOrderRepository.findById(id).orElseThrow(() -> getResourceNotFoundException(id));
+
+    PizzaOrder pizzaOrderData = pizzaOrderResourceMapper.mapRestToModel(pizzaOrderResource);
 
     pizzaOrder.setReadyMadePizzaOrders(pizzaOrderData.getReadyMadePizzaOrders());
     pizzaOrder.setCustomPizzaOrders(pizzaOrderData.getCustomPizzaOrders());
@@ -61,6 +70,15 @@ public class PizzaOrderController
 
     PizzaOrder updatedPizzaOrder = pizzaOrderRepository.save(pizzaOrder);
     return ResponseEntity.ok(updatedPizzaOrder);
+  }
+
+  @PatchMapping("/pizza-order/{id}")
+  public ResponseEntity<PizzaOrder> updatePizzaOrderState(@PathVariable Long id, @RequestBody OrderState state)
+  {
+    PizzaOrder
+      pizzaOrder = pizzaOrderRepository.findById(id).orElseThrow(() -> getResourceNotFoundException(id));
+    pizzaOrder.setOrderState(state);
+    return ResponseEntity.ok(pizzaOrder);
   }
 
   @DeleteMapping("/pizza-order/{id}")

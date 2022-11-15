@@ -5,9 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Set;
 
 @Entity
 @Table(name = "ReadyMadePizza")
@@ -29,9 +27,6 @@ public class ReadyMadePizza
   @Column(name = "image_path")
   private String imagePath;
 
-  @OneToMany(mappedBy = "id")
-  private Set<ReadyMadePizzaOrder> readyMadePizzaOrders;
-
   public ReadyMadePizza()
   {
   }
@@ -39,14 +34,12 @@ public class ReadyMadePizza
   public ReadyMadePizza(PizzaType type,
                         String description,
                         float unitPrice,
-                        String imagePath,
-                        Set<ReadyMadePizzaOrder> readyMadePizzaOrders)
+                        String imagePath)
   {
     this.type = type;
     this.description = description;
     this.unitPrice = unitPrice;
     this.imagePath = imagePath;
-    this.readyMadePizzaOrders = readyMadePizzaOrders;
   }
 
   public PizzaType getType()
@@ -87,15 +80,5 @@ public class ReadyMadePizza
   public void setImagePath(String imagePath)
   {
     this.imagePath = imagePath;
-  }
-
-  public Set<ReadyMadePizzaOrder> getReadyMadePizzaOrders()
-  {
-    return readyMadePizzaOrders;
-  }
-
-  public void setReadyMadePizzaOrders(Set<ReadyMadePizzaOrder> readyMadePizzaOrders)
-  {
-    this.readyMadePizzaOrders = readyMadePizzaOrders;
   }
 }

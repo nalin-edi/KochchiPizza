@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Set;
 
@@ -19,25 +18,21 @@ public class CustomPizza
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @ManyToOne @JoinColumn(name = "pizza_base_id")
+  @ManyToOne
+  @JoinColumn(name = "pizza_base_id")
   private PizzaBase pizzaBase;
 
   @ManyToMany
   private Set<PizzaTopping> pizzaToppings;
 
-  @OneToOne
-  @JoinColumn(name = "custom_pizza_order_id")
-  private CustomPizzaOrder customPizzaOrder;
-
   public CustomPizza()
   {
   }
 
-  public CustomPizza(PizzaBase pizzaBase, Set<PizzaTopping> pizzaToppings, CustomPizzaOrder customPizzaOrder)
+  public CustomPizza(PizzaBase pizzaBase, Set<PizzaTopping> pizzaToppings)
   {
     this.pizzaBase = pizzaBase;
     this.pizzaToppings = pizzaToppings;
-    this.customPizzaOrder = customPizzaOrder;
   }
 
   public PizzaBase getPizzaBase()
@@ -58,15 +53,5 @@ public class CustomPizza
   public void setPizzaToppings(Set<PizzaTopping> pizzaToppings)
   {
     this.pizzaToppings = pizzaToppings;
-  }
-
-  public CustomPizzaOrder getCustomPizzaOrder()
-  {
-    return customPizzaOrder;
-  }
-
-  public void setCustomPizzaOrder(CustomPizzaOrder customPizzaOrder)
-  {
-    this.customPizzaOrder = customPizzaOrder;
   }
 }
