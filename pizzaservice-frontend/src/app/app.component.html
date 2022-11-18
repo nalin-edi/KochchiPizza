@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink= "home" routerLinkActive="active" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink= "employees" routerLinkActive="active" class="nav-link">Employee List</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink= "create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink= "create-pizza-order" routerLinkActive="active" class="nav-link">Create Pizza Order</a>
+        </li>
+        <li class="nav-item">
+            <a routerLink= "list-pizza-orders" routerLinkActive="active" class="nav-link">Current Orders</a>
+        </li>
+
+    </ul>
+</nav>
+<h1 class="text-center">{{title}}</h1>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class = "footer">
+    <div class= "container">
+        <span>All Rights Reserved 2022 @Nalin Edirisinghe</span>
+    </div>
+</footer>

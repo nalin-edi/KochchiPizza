@@ -1,0 +1,37 @@
+<h2>Create Employee</h2>
+
+<div class="col-md-6 offset-md-3">
+
+<form (ngSubmit) = "onSubmit()">
+    <div class="form-group">
+        <label> First Name </label>
+        <input type="text" class="form-control" id="firstName" [(ngModel)] = "employee.firstName" name="firstName">
+    </div>
+    <div class="form-group">
+        <label> Last Name </label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)] = "employee.lastName" name="lastName">
+    </div>
+    <div class="form-group">
+        <label> User Name </label>
+        <input type="text" class="form-control" id="userName" [(ngModel)] = "employee.userName" name="userName">
+    </div>
+    <div class="form-group">
+        <label> Password </label>
+        <input type="text" class="form-control" id="password" [(ngModel)] = "employee.password" name="password">
+    </div>
+    <div class="form-group">
+        <label> Role </label>
+        <input type="text" class="form-control" id="role" [(ngModel)] = "employee.role" name="role">
+    </div>
+    <!-- <div class="form-group">
+        <label> User Role </label>
+        <select class="custom-select" id="role"  [(ngModel)]="employee.role"  name="role" required>
+            <option [value]="employeeRoles" *ngFor="let role of employeeRoles">{{employeeRoles}}</option>
+            </select>
+    </div> -->
+
+    <button class="btn btn-success" type="submit">Submit</button>
+
+</form>
+
+</div>
