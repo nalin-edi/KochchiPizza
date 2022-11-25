@@ -2,7 +2,7 @@ import { CustomePizzaOrder } from "./custome-pizza-order";
 import { ReadymadePizzaOrder } from "./readymade-pizza-order";
 
 export class PizzaOrder {
-    id!: string;
+    id!: number;
     customerName!: string;
     deliveryAddress!: string;
     contactNumber!: string;
