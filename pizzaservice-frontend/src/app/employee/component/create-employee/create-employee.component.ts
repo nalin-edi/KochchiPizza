@@ -34,6 +34,5 @@ export class CreateEmployeeComponent implements OnInit{
   goToEmployeeList()
   {
     this.router.navigate(['/employees']);
-
   }
 }

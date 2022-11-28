@@ -1,0 +1,35 @@
+<h6>Add custome made pizza to your order</h6>
+
+<form (ngSubmit) = "onSubmit()"  [formGroup] = 'pizzaForm'>
+
+<div class="row">
+    <div class="col col-xs-3">
+        <select id="inputState" class="form-select"  formControlName="base">
+          <option selected>Choose Pizza Base</option>
+          <option *ngFor="let base of pizzaBaseList" [value]="base.description">
+            {{base.description}} </option>
+        </select>
+    </div>
+    <div class="col col-xs-1" >
+        <select id="inputState" class="form-select" formControlName="topping">
+            <option selected>Choose Toppings</option>
+            <option *ngFor="let topping of pizzaToppings" [value]="topping.description">
+              {{topping.description}} </option>
+          </select>
+    </div>
+    <div class="col col-xs-1" >
+        <select id="inputState" class="form-select" formControlName="size">
+            <option selected>Choose Size</option>
+            <option *ngFor="let size of pizzaSizes">
+              {{size}} </option>
+          </select>
+    </div>
+    <div class="col col-xs-1">
+      <input type="text" class="form-control" placeholder="Quentity" aria-label="Quentity" formControlName="quentity">
+    </div>
+    <div class="col">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+  </div>
+
+  </form>

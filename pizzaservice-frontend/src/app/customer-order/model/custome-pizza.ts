@@ -5,4 +5,5 @@ export class CustomePizza {
     id!: number;
     pizzaBase!: PizzaBase;
     pizzaToppings!: PizzaTopping[];
+
 }

@@ -1,0 +1,25 @@
+<h2>Add Pizza Base</h2>
+
+<div class="col-md-6 offset-md-3">
+
+<form (ngSubmit) = "onSubmit()">
+    <div class="form-group">
+        <label> Discription </label>
+        <input type="text" class="form-control" id="description" [(ngModel)] = "pizzaBase.description" name="description">
+    </div>
+    <div class="form-group">
+        <label> Unit Price </label>
+        <input type="text" class="form-control" id="unitPrice" [(ngModel)] = "pizzaBase.unitPrice" name="unitPrice">
+    </div>
+    <!-- <div class="form-group">
+        <label> User Role </label>
+        <select class="custom-select" id="role"  [(ngModel)]="employee.role"  name="role" required>
+            <option [value]="employeeRoles" *ngFor="let role of employeeRoles">{{employeeRoles}}</option>
+            </select>
+    </div> -->
+
+    <button class="btn btn-success" type="submit">Submit</button>
+
+</form>
+
+</div>

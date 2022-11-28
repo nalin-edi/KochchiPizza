@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomePizzaComponent } from './custome-pizza.component';
+import { PizzaCartItemComponent } from './pizza-cart-item.component';
 
-describe('CustomePizzaComponent', () => {
-  let component: CustomePizzaComponent;
-  let fixture: ComponentFixture<CustomePizzaComponent>;
+describe('PizzaCartItemComponent', () => {
+  let component: PizzaCartItemComponent;
+  let fixture: ComponentFixture<PizzaCartItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomePizzaComponent ]
+      declarations: [ PizzaCartItemComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CustomePizzaComponent);
+    fixture = TestBed.createComponent(PizzaCartItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
