@@ -18,10 +18,10 @@ public class PizzaOrder
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @OneToMany(mappedBy = "pizzaOrder", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "pizzaOrder", targetEntity = ReadyMadePizzaOrder.class, cascade = CascadeType.ALL)
   private Set<ReadyMadePizzaOrder> readyMadePizzaOrders;
 
-  @OneToMany(mappedBy = "pizzaOrder", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "pizzaOrder", targetEntity = CustomPizzaOrder.class, cascade = CascadeType.ALL)
   private Set<CustomPizzaOrder> customPizzaOrders;
 
   @Column(name = "order_state")
